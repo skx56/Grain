@@ -26,7 +26,7 @@ export default function GrainApp() {
         const loaded = await import('sql.js')
         const initSqlJs = loaded.default
         const SQL = await initSqlJs({
-          locateFile: (file) => `/${file}`,
+          locateFile: (file) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/${file}`,
         })
         const db = new SQL.Database()
         db.run(SEED_SQL)
